@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: mahuthu/caresysbackend
+    build: ./backend
     container_name: backend
     env_file:
       - .env
@@ -33,7 +33,7 @@ services:
       - mks
 
   worker:
-    image: mahuthu/caresysbackend
+    build: ./backend
     container_name: worker
     command: celery -A easymed worker --loglevel=INFO
     env_file:
@@ -46,7 +46,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: mahuthu/caresysfrontend
+    build: ./front-end
     container_name: front-end
     env_file:
       - .env
