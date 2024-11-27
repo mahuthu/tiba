@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const backendAxiosInstance = axios.create({
-    baseURL: "http://backend:8080",
+    baseURL: "http://34.35.68.156/api",
 });
 
 backendAxiosInstance.interceptors.request.use(async (request) => {
@@ -9,3 +9,4 @@ backendAxiosInstance.interceptors.request.use(async (request) => {
     return request;
 });
 // http://127.0.0.1:8080/
+//http://backend:8080
