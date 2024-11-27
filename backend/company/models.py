@@ -1,0 +1,69 @@
+from django.db import models
+from django.core.validators import FileExtensionValidator
+from django.apps import apps
+
+class Company(models.Model):
+    name = models.CharField(max_length=250)
+    address1 = models.CharField(max_length=250, null=True, blank=True)
+    address2 = models.CharField(max_length=250, null=True, blank=True)
+    phone1 = models.CharField(max_length=250, null=True, blank=True)
+    phone2 = models.CharField(max_length=250, null=True, blank=True)
+    email1 = models.EmailField(null=True, blank=True)
+    email2 = models.EmailField(null=True, blank=True)
+    logo = models.FileField(
+        upload_to="Company/company-logo",
+        max_length=254,
+        null=True,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['pdf', 'img', 'png', 'jpg'])]
+    )
+
+    class Meta:
+        verbose_name_plural = "company"
+
+
+    def __str__(self):
+        return self.name    
+
+class CompanyBranch(models.Model):
+    name = models.CharField(max_length=250)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    address = models.CharField(max_length=250, null=True, blank=True)
+    phone = models.CharField(max_length=250, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    logo = models.FileField(
+        upload_to="Company/company-logo",
+        max_length=254,
+        null=True,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['pdf', 'img', 'png', 'jpg'])]
+    )
+
+    class Meta:
+        verbose_name_plural = "Company Branch"
+
+
+    def __str__(self):
+        return self.name  
+
+class InsuranceCompany(models.Model):
+    name = models.CharField(max_length=30)
+
+    def save(self, *args, **kwargs):
+        created = not self.pk
+        super().save(*args, **kwargs)
+        if created:
+            PaymentMode = apps.get_model('billing', 'PaymentMode')
+            PaymentMode.objects.create(
+                paymet_mode=self.name,
+                insurance=self,
+                payment_category='insurance'
+            )
+
+    def delete(self, *args, **kwargs):
+        PaymentMode = apps.get_model('billing', 'PaymentMode')
+        PaymentMode.objects.filter(insurance=self).delete()
+        super().delete(*args, **kwargs)
+
+    def __str__(self):
+        return self.name

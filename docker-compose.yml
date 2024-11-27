@@ -1,0 +1,73 @@
+services:
+  redis:
+    image: redis:7.0-alpine
+    container_name: redis2
+    command: redis-server --appendonly yes --replica-read-only no
+    volumes:
+      - ./volumes/redis/:/etc/redis/
+    ports:
+      - 6379:6379
+    networks:
+      - mks
+    restart: unless-stopped
+
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - mks
+    restart: unless-stopped
+
+  backend:
+    image: mahuthu/caresysbackend
+    container_name: backend
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    networks:
+      - mks
+
+  worker:
+    image: mahuthu/caresysbackend
+    container_name: worker
+    command: celery -A easymed worker --loglevel=INFO
+    env_file:
+      - .env
+    depends_on:
+      - backend
+      - redis
+    networks:
+      - mks
+    restart: unless-stopped
+
+  frontend:
+    image: mahuthu/caresysfrontend
+    container_name: front-end
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    depends_on:
+      - backend
+    networks:
+      - mks
+    restart: unless-stopped
+
+networks:
+  mks:
+    name: mks
+    driver: bridge
+
+volumes:
+  postgres_data:
