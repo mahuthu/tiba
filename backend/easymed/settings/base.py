@@ -17,7 +17,7 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = True
@@ -209,8 +209,8 @@ AUTH_USER_MODEL = 'customuser.CustomUser'
 
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Make-Easy HMIS",
-    "DESCRIPTION": "Make-Easy HMIS Endpoints",
+    "TITLE": "TIBA HMIS",
+    "DESCRIPTION": "TIBA HMIS Endpoints",
     "VERSION": "1.0.0",
 }
 
@@ -225,23 +225,23 @@ SIMPLE_JWT = {
     'TOKEN_OBTAIN_SERIALIZER': 'customuser.serializers.CustomTokenObtainPairSerializer',
 }
 
-# emails
-# EMAIL_BACKEND =os.environ.get("EMAIL_BACKEND")
-# EMAIL_HOST = os.environ.get("EMAIL_HOST")
-# EMAIL_PORT = os.environ.get("EMAIL_PORT")
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-
-
-
-# emails
-EMAIL_BACKEND =config("EMAIL_BACKEND", cast=str)
-EMAIL_HOST = config("EMAIL_HOST", cast=str)
-EMAIL_PORT = config("EMAIL_PORT", cast=int)
+#emails
+EMAIL_BACKEND =config("EMAIL_BACKEND")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_PORT = config("EMAIL_PORT")
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config("EMAIL_HOST_USER", cast=str)
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", cast=str)
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+
+
+
+# # emails
+# EMAIL_BACKEND =os.environ.get("EMAIL_BACKEND", cast=str)
+# EMAIL_HOST = os.environ.get("EMAIL_HOST", cast=str)
+# EMAIL_PORT = os.environ.get("EMAIL_PORT", cast=int)
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", cast=str)
+# EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", cast=str)
 
 
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -278,6 +278,16 @@ For some reason, docker is not able to differentiate db configs
 '''
 # 
 
+# DATABASES = {
+#     "default":{
+#         "ENGINE": os.environ.get("DB_ENGINE"),
+#         "NAME": os.environ.get("DB_NAME"),
+#         "USER": os.environ.get("DB_USER"),
+#         "PASSWORD": os.environ.get("DB_PASSWORD"),
+#         "HOST": os.environ.get("DB_HOST"),
+#         "PORT": os.environ.get("DB_PORT"),
+#     }
+# }
 DATABASES = {
     "default":{
         "ENGINE": config("DB_ENGINE"),
