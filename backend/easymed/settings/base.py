@@ -249,8 +249,8 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
 
-# OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-OPENAI_API_KEY = config("OPENAI_API_KEY")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+# OPENAI_API_KEY = config("OPENAI_API_KEY")
 
 
 CHANNELS_ROUTING = 'patient.routing.application'
@@ -289,6 +289,17 @@ For some reason, docker is not able to differentiate db configs
 #     }
 # }
 
+
+DATABASES = {
+    "default":{
+        "ENGINE": config("DB_ENGINE"),
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT"),
+    }
+}
 
 
 LOGGING = {

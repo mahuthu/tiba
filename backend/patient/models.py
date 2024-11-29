@@ -251,20 +251,41 @@ class AttendanceProcess(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):
-        # Check if the attendance process is being created for the first time
         if not self.pk:
-
             # Generate a unique track number
             self.track_number = str(uuid4())
             self.patient_number = self.patient.unique_id
 
-            # Create a new invoice with a default amount of 0
-            self.invoice = Invoice.objects.create(invoice_amount=0, invoice_number=self.track_number, patient=self.patient, invoice_date=self.created_at)
-            self.process_test_req = ProcessTestRequest.objects.create(reference=self.track_number)
-            self.triage = Triage.objects.create()
-            self.prescription = Prescription.objects.create()
+            # Save first without creating related objects
+            super().save(*args, **kwargs)
 
-        super().save(*args, **kwargs)
+            # Create related objects after saving
+            from billing.models import Invoice
+            from laboratory.models import ProcessTestRequest
+
+            if not self.invoice:
+                self.invoice = Invoice.objects.create(
+                    invoice_amount=0,
+                    invoice_number=self.track_number,
+                    patient=self.patient,
+                    invoice_date=self.created_at
+                )
+            
+            if not self.process_test_req:
+                self.process_test_req = ProcessTestRequest.objects.create(
+                    reference=self.track_number
+                )
+            
+            if not self.triage:
+                self.triage = Triage.objects.create()
+            
+            if not self.prescription:
+                self.prescription = Prescription.objects.create()
+
+            # Save again to update the relationships
+            super().save(update_fields=['invoice', 'process_test_req', 'triage', 'prescription'])
+        else:
+            super().save(*args, **kwargs)
 
 
     def __str__(self):
