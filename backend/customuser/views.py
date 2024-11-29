@@ -91,19 +91,30 @@ class LoginAPIView(TokenObtainPairView):
     )
     def post(self, request: Request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            user: CustomUser = serializer.validated_data['user']
-            refresh = RefreshToken.for_user(user)
+        try:
+            if serializer.is_valid():
+                user: CustomUser = serializer.validated_data['user']
+                refresh = RefreshToken.for_user(user)
 
-            refresh["email"] = str(user.email)
-            refresh["first_name"] = str(user.first_name)
-            refresh["role"] = str(user.role)
+                refresh["email"] = str(user.email)
+                refresh["first_name"] = str(user.first_name)
+                refresh["role"] = str(user.role)
 
+                return Response({
+                    'access': str(refresh.access_token),
+                    'refresh': str(refresh),
+                }, status=status.HTTP_200_OK)
+            
+            # Format validation errors consistently
             return Response({
-                'access': str(refresh.access_token),
-                'refresh': str(refresh),
-            }, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
+                'non_field_errors': ['Invalid credentials']
+            }, status=status.HTTP_401_UNAUTHORIZED)
+            
+        except Exception as e:
+            # Handle any other errors with consistent format
+            return Response({
+                'non_field_errors': [str(e) or 'Login failed']
+            }, status=status.HTTP_400_BAD_REQUEST)
 
 
 class DoctorsAPIView(APIView):
