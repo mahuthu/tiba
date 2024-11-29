@@ -234,7 +234,7 @@ class AttendanceProcess(models.Model):
         ('complete', 'Complete'),
     )
     track_number = models.CharField(max_length=50, null=True)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     patient_number = models.CharField(max_length=8, editable=False, default=999)
     doctor = models.ForeignKey(
         CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name='doctor_attendance_processes')

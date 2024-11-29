@@ -225,23 +225,23 @@ SIMPLE_JWT = {
     'TOKEN_OBTAIN_SERIALIZER': 'customuser.serializers.CustomTokenObtainPairSerializer',
 }
 
-#emails
-EMAIL_BACKEND =config("EMAIL_BACKEND")
-EMAIL_HOST = config("EMAIL_HOST")
-EMAIL_PORT = config("EMAIL_PORT")
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+# # emails
+# EMAIL_BACKEND =os.environ.get("EMAIL_BACKEND")
+# EMAIL_HOST = os.environ.get("EMAIL_HOST")
+# EMAIL_PORT = os.environ.get("EMAIL_PORT")
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
 
 
 # # emails
-# EMAIL_BACKEND =os.environ.get("EMAIL_BACKEND", cast=str)
-# EMAIL_HOST = os.environ.get("EMAIL_HOST", cast=str)
-# EMAIL_PORT = os.environ.get("EMAIL_PORT", cast=int)
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", cast=str)
-# EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", cast=str)
+EMAIL_BACKEND =config("EMAIL_BACKEND", cast=str)
+EMAIL_HOST = config("EMAIL_HOST", cast=str)
+EMAIL_PORT = config("EMAIL_PORT", cast=int)
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", cast=str)
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", cast=str)
 
 
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -288,16 +288,7 @@ For some reason, docker is not able to differentiate db configs
 #         "PORT": os.environ.get("DB_PORT"),
 #     }
 # }
-DATABASES = {
-    "default":{
-        "ENGINE": config("DB_ENGINE"),
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT"),
-    }
-}
+
 
 
 LOGGING = {
