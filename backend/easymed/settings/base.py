@@ -17,7 +17,7 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get('SECRET_KEY')
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = True
@@ -250,8 +250,8 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-# OPENAI_API_KEY = config("OPENAI_API_KEY")
+# OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+OPENAI_API_KEY = config("OPENAI_API_KEY")
 
 
 CHANNELS_ROUTING = 'patient.routing.application'
