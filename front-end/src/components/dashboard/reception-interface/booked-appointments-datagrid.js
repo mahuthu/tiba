@@ -20,11 +20,11 @@ const getActions = () => {
       label: "Convert to Patient",
       icon: <FaWheelchair className="text-success text-xl mx-2" />,
     },
-    // {
-    //   action: "assign",
-    //   label: "Assign Doctor",
-    //   icon: <FaWheelchair className="text-success text-xl mx-2" />,
-    // },
+    {
+    action: "assign",
+    label: "Assign Doctor",
+    icon: <FaWheelchair className="text-success text-xl mx-2" />,
+    },
   ];
 
   return actions;

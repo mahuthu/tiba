@@ -228,7 +228,7 @@ const SignUp = () => {
           <div className="text-white">
             <div className="space-y-4">
               <h1 className="text-2xl text-center">
-                Welcome to Make Savannah HMIS
+                Welcome to Tiba HIMS
               </h1>
               <p className="text-sm text-center">Innovating Healthcare, Simplifying Lives</p>
             </div>

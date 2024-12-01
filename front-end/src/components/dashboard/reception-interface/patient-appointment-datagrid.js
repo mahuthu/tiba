@@ -114,12 +114,12 @@ const PatientAppointmentDataGrid = ({ patientAppointments }) => {
           <Link href="/dashboard/reception-interface/booked-appointments" className="bg-primary text-white rounded-xl px-3 py-2 text-sm">
             Booked Appointments
           </Link>
-          {/* <input
+          <input
             className="shadow-2xl border-gray py-2 px-8 focus:outline-none rounded"
             onChange={(e) => setSearchQuery(e.target.value)}
             value={searchQuery}
             placeholder="Search..."
-          /> */}
+          />
         </div>
       </section>
       <DataGrid
