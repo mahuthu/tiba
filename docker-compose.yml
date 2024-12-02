@@ -21,8 +21,14 @@ services:
     restart: unless-stopped
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: backend
+    expose:
+    - 8080 
+    # command: uvicorn --host 0.0.0.0 --port 8080 easymed.asgi:application
+
     env_file:
       - .env
     depends_on:
@@ -46,8 +52,12 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./front-end
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
     container_name: front-end
+    expose:
+      - 3000  #
     env_file:
       - .env
     depends_on:
