@@ -3,10 +3,6 @@ from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
-from django.http import JsonResponse
-from django.urls import get_resolver
-
-
 
 from billing.views import download_invoice_pdf
 from inventory.views import download_requisition_pdf, download_purchaseorder_pdf
@@ -20,43 +16,20 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
-def debug_view(request):
-    # Get all registered URLs
-    resolver = get_resolver()
-    urls = []
-    def collect_urls(resolver, prefix=''):
-        for pattern in resolver.url_patterns:
-            if hasattr(pattern, 'url_patterns'):
-                collect_urls(pattern, prefix + str(pattern.pattern))
-            else:
-                urls.append(prefix + str(pattern.pattern))
-    collect_urls(resolver)
-    
-    return JsonResponse({
-        'registered_urls': urls,
-        'current_path': request.path,
-        'method': request.method,
-        'headers': dict(request.headers)
-    })
-
 
 urlpatterns = [
     path('announcement/', include('announcement.urls')),
-    path('debug/', debug_view),  # Add debug endpoint
-
     path('admin/', admin.site.urls),
-    path('api/patients/', include('patient.urls')),
+    path('patients/', include('patient.urls')),
     path('lab/', include('laboratory.urls')),
     path('billing/', include('billing.urls')),
     path('inventory/', include('inventory.urls')),
     path('authperms/', include('authperms.urls')),
-    path('api/customuser/', include('customuser.urls')),
-    path('api/users/', include('customuser.urls')),
+    path('customuser/', include('customuser.urls')),
+    path('users/', include('customuser.urls')),
     path('reports/', include('reports.urls')),
     path('pharmacy/', include('pharmacy.urls')),
     path('company/', include('company.urls')),
-    path('api/chatbot/', include('chatbot.urls')),
-
 
     # schemas
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
