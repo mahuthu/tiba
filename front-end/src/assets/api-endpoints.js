@@ -147,14 +147,13 @@ export const APP_API_URL = {
   /***************** AUTH **********************/
   REGISTER_USER: "/api/register",
   CREATE_USER: "/api/auth/create-user",
-  LOGIN: "api/register/login",
+  LOGIN: "/api/register/login",
   REFRESH_TOKEN: "/api/auth/refresh",
   GET_USER_PERMISSIONS: "/api/auth/user-permissions",
   FETCH_GROUP: "/api/groups",
   FETCH_PATIENT_GROUP: "/api/auth/get-group",
   FETCH_ALL_PERMISSIONS: "/api/groups/fetchPermissions",
   FETCH_GROUP_PERMISSIONS: "/api/groups/fetchGroupPermissions",
-
   /***************** PATIENT APIS **********************/
   CREATE_PATIENT: "/api/patient",
   EDIT_PATIENT: "/api/patient/edit-patient",
