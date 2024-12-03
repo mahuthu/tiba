@@ -67,7 +67,8 @@ class RegistrationAPIView(APIView):
     def post(self, request: Request, *args, **kwargs):
         data = request.data
         serializer = CustomUserRegistrationSerializer(data=data)
-
+        print(f"Request path: {request.path}")  # Add this debug line
+        print(f"Full URL: {request.build_absolute_uri()}")
         serializer.is_valid(raise_exception=True)
         role = serializer.validated_data.get("role")
 
