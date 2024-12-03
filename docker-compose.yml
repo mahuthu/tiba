@@ -25,8 +25,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: backend
-    expose:
-    - 8080 
+    ports:
+      - 8080:8080 
     # command: uvicorn --host 0.0.0.0 --port 8080 easymed.asgi:application
 
     env_file:
@@ -56,8 +56,8 @@ services:
       context: ./front-end
       dockerfile: Dockerfile
     container_name: front-end
-    expose:
-      - 3000  #
+    ports:
+      - "3000:3000"
     env_file:
       - .env
     depends_on:
