@@ -1,5 +1,5 @@
 //------------------------ Backend APIs ----------------------//
-export const APP_API_URL = {
+export const API_URL = {
   /***************** AUTHENTICATION APIS **********************/
   REGISTER_USER: "/users/register/",
   CREATE_USER: "/users/register/",
@@ -143,7 +143,7 @@ export const APP_API_URL = {
 };
 
 //------------------------ Application APIs ----------------------//
-export const API_URL = {
+export const APP_API_URL = {
   /***************** AUTH **********************/
   REGISTER_USER: "/api/register",
   CREATE_USER: "/api/auth/create-user",
