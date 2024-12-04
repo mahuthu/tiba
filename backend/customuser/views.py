@@ -92,8 +92,8 @@ class LoginAPIView(TokenObtainPairView):
         request=CustomUserLoginSerializer,
     )
     def post(self, request: Request, *args, **kwargs):
-        print(f"Request path: {request.path}")  # Add this debug line
-        print(f"Full URL: {request.build_absolute_uri()}")
+        # print(f"Request path: {request.path}")  # Add this debug line
+        # print(f"Full URL: {request.build_absolute_uri()}")
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             user: CustomUser = serializer.validated_data['user']
