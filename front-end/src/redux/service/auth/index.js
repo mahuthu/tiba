@@ -29,21 +29,20 @@ export const createUser = (payload,auth) =>{
     })
 }
 
-export const fetchUserPermissions = (user_id) =>{
-    return new Promise((resolve,reject) =>{
-        axios.get(`${APP_API_URL.GET_USER_PERMISSIONS}`,{
-            params:{
-                user_id: user_id
-            }
-        })
-            .then((res) =>{
-                resolve(res.data)
+// 
+
+export const fetchUserPermissions = (user_id) => {
+    return new Promise((resolve, reject) => {
+        // Using template literal to include user_id in the URL path
+        axios.get(`${APP_API_URL.GET_USER_PERMISSIONS}${user_id}/`)
+            .then((res) => {
+                resolve(res.data);
             })
-            .catch((err) =>{
-                reject(err.message)
-            })
-    })
-}
+            .catch((err) => {
+                reject(err.message);
+            });
+    });
+};
 
 export const fetchGroupPermissions = (group_id, auth) => {
     const axiosInstance = UseAxios(auth);
