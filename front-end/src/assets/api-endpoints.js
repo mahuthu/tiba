@@ -266,8 +266,8 @@ export const APP_API_URL = {
   FETCH_COMPANY_INFO: "/api/company/company/",
 
 
-  CHATBOT_CHAT: "/api/chatbot/chat/",
-  CHATBOT_EXAMPLES: "/api/chatbot/chat/",
+  // CHATBOT_CHAT: "/api/chatbot/chat/",
+  // CHATBOT_EXAMPLES: "/api/chatbot/chat/",
 
 
 
