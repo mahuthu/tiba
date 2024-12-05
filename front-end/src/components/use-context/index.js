@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
             router.push(`/patient-overview`);
           } else {
             dispatch(getAllUserPermissions(decodedUser?.user_id));
-            router.push("/dashboard");
+            router.push("/dashboard/reception-interface");
           }
         } catch (error) {
           throw error;
