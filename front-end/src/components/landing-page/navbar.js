@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <section className="flex items-center justify-between h-[10vh]">
       <div>
-        <h1 className="text-white text-2xl">Tiba</h1>
+        <h1 className="text-white text-xl">HIMS</h1>
       </div>
       <div className="md:block hidden">
         <ul className="flex items-center gap-4 text-white">
