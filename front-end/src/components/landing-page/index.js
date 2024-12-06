@@ -10,10 +10,10 @@ const LandingPage = () => {
       <Navbar />
       <section className="flex items-center justify-between h-[84vh]">
         <div className="md:w-7/12 w-full space-y-4">
-          <h1 className="text-white md: font-thin md:text-4xl text-2xl" style={{ color: '#d6d6d6' }}>
+          <h1 className="text-white md: font-light md:text-4xl text-2xl" style={{ color: '#d6d6d6' }}>
             Innovating Care, Simplifying Lives.
           </h1>
-          <p className="text-white font-thin md:text-sm text-xs">
+          <p className="text-white font-light md:text-sm text-xs">
             Revolutionize hospital management with our AI-powered Hospital Information Management System. 
             From intelligent patient record handling to predictive analytics and virtual assistance, 
             our system streamlines operations and empowers staff to deliver exceptional care effortlessly!
