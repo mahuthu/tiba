@@ -156,21 +156,21 @@ const SupportModal = () => {
                     <h2 className="font-semibold mb-2">Address</h2>
                     <div className="flex gap-4 items-center text-xl mb-2">
                         <CiLocationOn />
-                        <span>38779, Ngara Rd, Nairobi</span>
+                        <span>The Piano, Westlands, Nairobi</span>
                     </div>
                 </div>
                 <div className="py-2 border-b border-gray">
                     <h2 className="font-semibold mb-2">Phone</h2>
                     <div className="flex gap-4 items-center text-xl mb-2">
                         <BsTelephoneOutbound />
-                        <span>0722 123456</span>
+                        <span>0793 704217</span>
                     </div>
                 </div>
                 <div className="py-2 border-b border-gray">
                     <h2 className="font-semibold mb-2">Email Address</h2>
                     <div className="flex gap-4 items-center text-xl mb-2">
                         <MdOutlineMarkEmailRead />
-                        <span>easyhmis@mail.co.ke</span>
+                        <span>support@tiba.co.ke</span>
                     </div>
                 </div>
                 <div className="py-2 border-b border-gray">
