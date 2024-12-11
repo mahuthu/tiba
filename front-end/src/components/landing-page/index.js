@@ -19,9 +19,11 @@ const LandingPage = () => {
             our system streamlines operations and empowers staff to deliver exceptional care effortlessly!
           </p>
           <div className="flex items-center gap-4">
-            <button className="border border-white text-white px-4 py-3">
+            <Link href="/home/contact">
+             <button className="border border-white hover:bg-primary hover:text-white hover:border-none text-white px-4 py-3 transition duration-500 hover:scale-105">
               Get Started
             </button>
+            </Link>
             <Link href="/book-appointment">
               <button className="border border-white hover:bg-primary hover:text-white hover:border-none text-white px-4 py-3 transition duration-500 hover:scale-105">
                 Book Appointment

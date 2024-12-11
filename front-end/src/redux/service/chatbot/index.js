@@ -9,7 +9,9 @@ export const getExampleQuestions = (auth) => {
 
     return new Promise((resolve, reject) => {
         // Use axios directly with full URL
-        axios.get(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        // axios.get(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        axios.get(`https://34.35.68.156${APP_API_URL.CHATBOT_CHAT}`, {
+
             headers: {
                 Authorization: `Bearer ${auth?.token}`,
                 'Content-Type': 'application/json',
@@ -35,7 +37,9 @@ export const getExampleQuestions = (auth) => {
 
 export const sendChatMessage = (message, auth) => {
     return new Promise((resolve, reject) => {
-        axios.post(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        // axios.post(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        axios.post(`https://34.35.68.156${APP_API_URL.CHATBOT_CHAT}`, {
+
             question: message
         }, {
             headers: {
@@ -64,7 +68,9 @@ export const sendChatMessage = (message, auth) => {
 
 export const getQueryByType = (queryType, auth) => {
     return new Promise((resolve, reject) => {
-        axios.get(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        // axios.get(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        axios.get(`http://34.35.68.156${APP_API_URL.CHATBOT_CHAT}`, {
+
             params: { query_type: queryType },
             headers: {
                 Authorization: `Bearer ${auth?.token}`,
