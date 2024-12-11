@@ -10,7 +10,7 @@ export const getExampleQuestions = (auth) => {
     return new Promise((resolve, reject) => {
         // Use axios directly with full URL
         // axios.get(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
-        axios.get(`http://backend:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        axios.get(`https://tiba.co.ke${APP_API_URL.CHATBOT_CHAT}`, {
 
             headers: {
                 Authorization: `Bearer ${auth?.token}`,
@@ -38,7 +38,7 @@ export const getExampleQuestions = (auth) => {
 export const sendChatMessage = (message, auth) => {
     return new Promise((resolve, reject) => {
         // axios.post(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
-        axios.post(`http://backend:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        axios.post(`https://tiba.co.ke${APP_API_URL.CHATBOT_CHAT}`, {
 
             question: message
         }, {
@@ -69,7 +69,7 @@ export const sendChatMessage = (message, auth) => {
 export const getQueryByType = (queryType, auth) => {
     return new Promise((resolve, reject) => {
         // axios.get(`http://localhost:8080${APP_API_URL.CHATBOT_CHAT}`, {
-        axios.get(`http://backend:8080${APP_API_URL.CHATBOT_CHAT}`, {
+        axios.get(`https://tiba.co.ke${APP_API_URL.CHATBOT_CHAT}`, {
 
             params: { query_type: queryType },
             headers: {
