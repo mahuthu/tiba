@@ -25,7 +25,7 @@ const nextConfig = {
 
       {
         source: '/chatbot/:path*',
-        destination: 'http://backend:8080/chatbot/:path*'  // Using Docker service name
+        destination: 'http://backend:8080/api/chatbot/:path*'  // Using Docker service name
         //destination: 'http://34.35.68.156/chatbot/:path*'
       }
       

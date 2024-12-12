@@ -30,6 +30,8 @@ urlpatterns = [
     path('reports/', include('reports.urls')),
     path('pharmacy/', include('pharmacy.urls')),
     path('company/', include('company.urls')),
+    path('api/chatbot/', include('chatbot.urls')),  # Remove the leading slash
+
 
     # schemas
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
